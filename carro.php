@@ -78,7 +78,7 @@
 
   <div class="row carro">
     <a class="btn btn-default" href="./carro.php?action=empty">Vaciar carro</a>
-    <a class="btn btn-default" href=".<?php echo isset($_GET['redirect']) ? $_GET['redirect'] : "/index.php"; ?>">Seguir comprando</a>
+    <a class="btn btn-default" href=".<?php echo isset($_GET['redirect']) ? urldecode($_GET['redirect']) : "/index.php"; ?>">Seguir comprando</a>
     <a class="btn btn-default" href="">Comprar</a>
   </div>
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">

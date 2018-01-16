@@ -82,14 +82,14 @@ class Producto
        }
 
     public function getHtml(){
-
+      $redirect=str_replace("state=exclusive","state=normal",$_SERVER["REQUEST_URI"]);
       $str =  "<h2 class='subtitle' style='margin:0'>" . $this->nombre ."</h2>";
       $str .= "<img class='center-block img-responsive img-thumbnail' src='./basededatos/img/600_" . $this->foto . "' alt=''>";
     	$str .= "<div class='caption'>";
     	$str .= "<p>" . $this->descripcion . "</p>";
     	$str .= "</div>";
     	$str .= "<h4 class='pull-right' style='position:absolute; bottom:4px; left:4px'>". $this->getHtmlPrecio() . "</h4>";
-      $str .= "<a href='./carro.php?action=add&id=" . $this->id . "&cantidad=1&redirect=". $_SERVER['PHP_SELF']."' class='btn btn-danger' style='position:absolute; bottom:4px; right:4px'>Comprar</a>";
+      $str .= "<a href='./carro.php?action=add&id=" . $this->id . "&cantidad=1&redirect=". urlencode($redirect)."' class='btn btn-danger' style='position:absolute; bottom:4px; right:4px'>Comprar</a>";
 
       return $str;
 
@@ -115,7 +115,7 @@ class Producto
             $str .= "<p>". $this->descripcion . "</p>";
           $str .= "</div>";
           $str .= "<h4 class='pull-right'>" . $this->getHtmlPrecio() . "</h4>";
-          $str .= "<a href='./carro.php?action=add&id=" . $this->id . "&cantidad=1&redirect=". $_SERVER['PHP_SELF']."' class='btn btn-danger'>Comprar</a>";
+          $str .= "<a href='./carro.php?action=add&id=" . $this->id . "&cantidad=1&redirect=". urlencode($_SERVER['REQUEST_URI'])."' class='btn btn-danger'>Comprar</a>";
         $str .= "</div>";
       $str .= "</div>";
       return $str;
