@@ -25,10 +25,8 @@
     }
     if ("normal" == $state){
       include("./include/header.php");
-      $bottomScripts = array();
-      $bottomScripts[] = "modalDomProducto.js";
       ?>
-      <div class="row" style='position:relative; border:1px solid #ddd; border-radius:4px; padding:4px;' >
+      <div id='infoProducto' class="row" style='position:relative; border:1px solid #ddd; border-radius:4px; padding:4px;' >
           <?php
               echo $producto->getHtml();
            ?>
@@ -55,6 +53,9 @@
        </div>
      </div>
       <?php
+      $bottomScripts = array();
+      $bottomScripts[] = "loadProducto.js";
+      $bottomScripts[] = "modalDomProducto.js";
       include("./include/footer.php");
     }
     else if("popup" == $state){
