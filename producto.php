@@ -65,6 +65,5 @@
     } else if("json" == $state){
       echo $producto->getJson();
       exit();
-    } else if("exclusive" == $state){
-  }
+    }
 ?>

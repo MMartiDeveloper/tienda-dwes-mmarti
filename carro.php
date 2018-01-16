@@ -81,7 +81,6 @@
     <a class="btn btn-default" href=".<?php echo isset($_GET['redirect']) ? $_GET['redirect'] : "/index.php"; ?>">Seguir comprando</a>
     <a class="btn btn-default" href="">Comprar</a>
   </div>
-  /* Ventana modal */
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
   <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">

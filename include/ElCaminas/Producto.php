@@ -77,6 +77,10 @@ class Producto
       return $precioTexto;
     }
 
+    public function getJson(){
+         return json_encode(array("HOME"=> "/tienda/", "id" => $this->id, "nombre" => $this->nombre, "foto" => $this->foto, "descripcion" =>  $this->descripcion, "precio" => $this->getHtmlPrecio()));
+       }
+
     public function getHtml(){
 
       $str =  "<h2 class='subtitle' style='margin:0'>" . $this->nombre ."</h2>";
@@ -97,8 +101,6 @@ class Producto
       $str .= "<div class='caption'>";
       $str .= "<p>" . $this->descripcion . "</p>";
       $str .= "</div>";
-      $str .= "<h4 class='pull-right' style='position:absolute; bottom:4px; left:4px'>". $this->getHtmlPrecio() . "</h4>";
-      $str .= "<a href='./carro.php?action=add&id=" . $this->id . "&cantidad=1&redirect=". $_SERVER['PHP_SELF']."' class='btn btn-danger' style='position:absolute; bottom:4px; right:4px'>Comprar</a>";
 
       return $str;
 
@@ -109,7 +111,7 @@ class Producto
         $str .= "<div class='thumbnail' style='position:relative'>";
           $str .= "<a href='" .  $this->url . "'><img src='./basededatos/img/256_" . $this->foto . "' alt=''></a>";
           $str .= "<div class='caption'>";
-            $str .= "<h4><a href='" .  $this->url . "'>". $this->nombre . "</a> <a class='open-modal' href='$this->url&state=popup'><span style='color:#000' class='fa fa-external-link'></span></a></h4>";
+            $str .= "<h4><a href='" .  $this->url . "'>". $this->nombre . "</a> <a class='open-modal' href='$this->url'><span style='color:#000' class='fa fa-external-link'></span></a></h4>";
             $str .= "<p>". $this->descripcion . "</p>";
           $str .= "</div>";
           $str .= "<h4 class='pull-right'>" . $this->getHtmlPrecio() . "</h4>";

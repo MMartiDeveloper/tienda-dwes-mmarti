@@ -11,7 +11,7 @@ function attachModalInfo(){
     event.preventDefault();
       //Busco el attributo href y le añado el state=exclusive
     var href = $( this ).attr('href');
-    //href = href + "&state=exclusive";
+    href = href + "&state=exclusive";
     //Llamada a ajax, simplificada sin tratamiento de errores
     var jqxhr = $.get( href, function(data) {
       //Fijo el contenido del contenedor al devuelto por ajax
