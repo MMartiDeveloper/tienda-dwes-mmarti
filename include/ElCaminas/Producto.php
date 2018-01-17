@@ -78,7 +78,7 @@ class Producto
     }
 
     public function getJson(){
-         return json_encode(array("HOME"=> "/tienda/", "id" => $this->id, "nombre" => $this->nombre, "foto" => $this->foto, "descripcion" =>  $this->descripcion, "precio" => $this->getHtmlPrecio()));
+         return json_encode(array("HOME"=> "./", "id" => $this->id, "nombre" => $this->nombre, "foto" => $this->foto, "descripcion" =>  $this->descripcion, "precio" => $this->getHtmlPrecio()));
        }
 
     public function getHtml(){
