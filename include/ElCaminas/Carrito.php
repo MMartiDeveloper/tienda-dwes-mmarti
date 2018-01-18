@@ -27,9 +27,6 @@ class Carrito
       unset($_SESSION['carrito']);
       self::__construct();
     }
-    public function howMany(){
-      return count($_SESSION['carrito']);
-    }
     public function toHtml(){
       //NO USAR, de momento
       $str = <<<heredoc
@@ -47,7 +44,7 @@ heredoc;
           $subtotalTexto = number_format($subtotal , 2, ',', ' ') ;
           $str .=  "<tr><th scope='row'>$i</th><td><a href='" .  $producto->getUrl() . "'>" . $producto->getNombre();
           $str .= "</a><a class='open-modal' title='Haga clic para ver el detalle del producto' href='" . $producto->getUrl();
-          $str .= "'><span class='fa fa-external-link'></span></a></td><td>$cantidad</td><td>" .  $producto->getPrecioReal(); 
+          $str .= "'><span class='fa fa-external-link'></span></a></td><td>$cantidad</td><td>" .  $producto->getPrecioReal();
           $str .=" €</td><td>$subtotalTexto €</td>";
           $str .= "<td><a class='btn btn-default fa fa-close' href='./carro.php?action=delete&id=" . $key . "'></a></td></tr>";
           $total += $subtotal;
@@ -61,4 +58,16 @@ heredoc;
 heredoc;
       return $str;
     }
+   public function itemExists($id){
+       return isset($_SESSION['carrito'][$id]);
+   }
+   public function getItemCount($id){
+     if (!$this->itemExists($id))
+       return 0;
+     else
+       return $_SESSION['carrito'][$id];
+   }
+   public function howMany(){
+     return array_sum($_SESSION['carrito']);
+   }
 }

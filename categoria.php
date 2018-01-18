@@ -72,8 +72,10 @@
 <?php endif; ?>
 <?php
 if ("normal" == $state){
-   $bottomScripts = array();
-   $bottomScripts[] = "loadCategorias.js";
-   include("./include/footer.php");
+  $bottomScripts = array();
+  $bottomScripts[] = "loadCategorias.js";
+  $bottomScripts[] = "loadCategoriaspost.js";
+  $bottomScripts[] = "modalDomProducto.js";
+  include("./include/footer.php");
 }
 ?>
