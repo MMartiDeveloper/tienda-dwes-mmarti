@@ -24,7 +24,13 @@
     exit();
   }
   $title = "Plantas el Caminàs -> " . $categoria["nombre"];
-  include("./include/header.php");
+  $state = "normal";
+ if (isset($_GET["state"])){
+   $state = $_GET["state"];
+ }
+ if ("normal" == $state){
+   include("./include/header.php");
+ }
 
   require './include/JasonGrimes/Paginator.php';
 
@@ -42,8 +48,11 @@
   $totalItems = $productos->getCountProductosByCategoria($_GET["id"]);
 
 ?>
+<?php if ("normal" == $state): ?>
+<h2 class='subtitle' style='margin-left:0; margin-right:0;'><?php echo $categoria["nombre"];?></h2>
+<div id="data-container">
+<?php endif; ?>
   <div class="row">
-    <h2 class='subtitle'><?php echo $categoria["nombre"];?></h2>
     <?php
     foreach($productos->getProductosByCategoria($_GET["id"], $itemsPerPage, $currentPage) as $producto){
        echo $producto->getThumbnailHtml();
@@ -58,6 +67,13 @@
     include './include/JasonGrimes/examples/pager.phtml';
     ?>
   </div>
+<?php if ("normal" == $state):?>
+  </div>
+<?php endif; ?>
 <?php
-include("./include/footer.php");
+if ("normal" == $state){
+   $bottomScripts = array();
+   $bottomScripts[] = "loadCategorias.js";
+   include("./include/footer.php");
+}
 ?>
