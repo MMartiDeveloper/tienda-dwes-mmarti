@@ -23,7 +23,7 @@ $productos = new Productos();
                             <ol class="carousel-indicators">
                               <?php
 
-                              $query = " SELECT * FROM productos WHERE carrusel IS NOT NULL LIMIT 6";
+                              $query = " SELECT * FROM productos WHERE carrusel != '' LIMIT 6";
 
                               $statement = $connect->prepare($query);
 
