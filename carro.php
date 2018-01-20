@@ -25,12 +25,12 @@ if (($_SERVER["REQUEST_METHOD"] == "POST")){
       $carrito->addItem($_GET["id"], 1);
     }
     //Siempre devolvemos en itemCount los que ya hay ahora en el carro de ese producto
-    echo json_encode(array("HOME"=> HOME, "itemCount"=>$carrito->getItemCount($_GET["id"]), "cuantos"=> $carrito->howMany(), "total"=> $carrito->getTotal()));
+    echo json_encode(array("HOME"=> "./", "itemCount"=>$carrito->getItemCount($_GET["id"]), "cuantos"=> $carrito->howMany(), "total"=> $carrito->getTotal()));
     exit();
   }elseif ($action == "update"){
       //Cuando es update (desde el botón de actualizar de la ventana modal, la cantidad es la que introduce el usuario)
       $carrito->addItem($_GET["id"], $_POST["cantidad"]);
-      echo json_encode(array("HOME"=> HOME, "itemCount"=>$carrito->getItemCount($_GET["id"]), "cuantos"=> $carrito->howMany(), "total"=> $carrito->getTotal()));
+      echo json_encode(array("HOME"=> "./", "itemCount"=>$carrito->getItemCount($_GET["id"]), "cuantos"=> $carrito->howMany(), "total"=> $carrito->getTotal()));
       exit();
   }
 }else {
@@ -84,13 +84,12 @@ if (($_SERVER["REQUEST_METHOD"] == "POST")){
 
              // onAuthorize() is called when the buyer approves the payment
              onAuthorize: function(data, actions) {
-
-                 // Make a call to the REST api to execute the payment
-                 return actions.payment.execute().then(function() {
-                     window.alert('Payment Complete!');
-                     <?php $carrito->empty(); ?>
-                 });
-             }
+                // Make a call to the REST api to execute the payment
+                return actions.payment.execute().then(function() {
+                    window.alert('Pago Completado!');
+                    document.location.href = 'gracias.php';
+                });
+              }
 
          }, '#paypal-button-container');
 
